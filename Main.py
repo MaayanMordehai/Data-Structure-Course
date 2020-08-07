@@ -41,7 +41,7 @@ def test_cross_func(func_name, func, M, m):
 
 def main():
     
-    # Creating the test metrixs
+    # Creating the test matrixs
     first_matrix_size = 15
     first_matrix =  generate_worst_case_matrix(first_matrix_size)
     second_matrix_size = 50
