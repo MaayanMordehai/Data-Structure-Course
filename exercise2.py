@@ -27,8 +27,7 @@ def bigCross2(M, m):
 
             if cross_size > biggest_cross_size:
                 biggest_cross_size = cross_size
-                biggest_cross_point = [row+1, col+1]
-
+                biggest_cross_point = [col+1, row+1]
     return biggest_cross_point, biggest_cross_size
 
 
@@ -73,7 +72,7 @@ def get_direction_count_matrix(M, m):
 
                 # adding the number of 1s left
                 if x_from_start - 1 >= 0:
-                    matrix[y_from_start][x_from_start]['left']+=matrix[y_from_start-1][x_from_start]['left']
+                    matrix[y_from_start][x_from_start]['left']+=matrix[y_from_start][x_from_start-1]['left']
 
             # if there is a cross in the current point from the end
             if M[y_from_end][x_from_end]:

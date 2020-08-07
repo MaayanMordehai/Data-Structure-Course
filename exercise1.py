@@ -32,7 +32,7 @@ def bigCross1(M, m):
                 if cross_size > biggest_cross_size:
                     biggest_cross_size = cross_size
                     # adding 1 to becuase the points starts from 1,1
-                    biggest_cross_point = [row+1, col+1]
+                    biggest_cross_point = [col+1, row+1]
 
     return biggest_cross_point, biggest_cross_size
 
