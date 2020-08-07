@@ -15,7 +15,7 @@ def bigCross2(M, m):
         biggest cross point 
         biggest cross size
     """
-    temp_metrix = get_direction_count_matrix(M, m)
+    temp_matrix = get_direction_count_matrix(M, m)
 
     biggest_cross_size = -1
     biggest_cross_point = [-1, -1]
@@ -23,7 +23,7 @@ def bigCross2(M, m):
     for row in range(0, m):
         for col in range(0, m):
             # getting the cross size, -1 to not include the middle point
-            cross_size = min(temp_metrix[row][col].values())-1
+            cross_size = min(temp_matrix[row][col].values())-1
 
             if cross_size > biggest_cross_size:
                 biggest_cross_size = cross_size
