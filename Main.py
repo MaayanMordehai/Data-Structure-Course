@@ -1,6 +1,6 @@
-import exercise1
-import exercise2
-import random
+from exercise1 import bigCross1
+from exercise2 import bigCross2
+from random import getrandbits
 from datetime import datetime
 
 def generate_matrix(m):
@@ -11,7 +11,7 @@ def generate_matrix(m):
     Returns:
         The matrix
     """
-    return [[random.getrandbits(1) for i in range(0, m)] for i in range(0, m)]
+    return [[getrandbits(1) for i in range(0, m)] for i in range(0, m)]
 
 def generate_worst_case_matrix(m):
     """
@@ -47,13 +47,13 @@ def main():
 
     # Testing bigCross1 O(m^3) vs bigCross2 O(m^2)
     print("=====================================================================")
-    test_cross_func(exercise1.bigCross1, first_matrix, first_matrix_size)
+    test_cross_func(bigCross1, first_matrix, first_matrix_size)
     print("---------------------------------------------------------------------")
-    test_cross_func(exercise2.bigCross2, first_matrix, first_matrix_size)
+    test_cross_func(bigCross2, first_matrix, first_matrix_size)
     print("=====================================================================")
-    test_cross_func(exercise1.bigCross1, second_matrix, second_matrix_size)
+    test_cross_func(bigCross1, second_matrix, second_matrix_size)
     print("---------------------------------------------------------------------")
-    test_cross_func(exercise2.bigCross2, second_matrix, second_matrix_size)
+    test_cross_func(bigCross2, second_matrix, second_matrix_size)
     print("=====================================================================")
 
 
