@@ -11,8 +11,6 @@ class Node:
         self.next = None
 
 
-# Linked List defining and loop 
-# length finding class 
 class LinkedList:
     """ This class is a Linked list """
 
