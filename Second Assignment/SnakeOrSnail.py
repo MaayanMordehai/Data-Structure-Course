@@ -20,8 +20,6 @@ class LinkedList:
         """ Constructor of a Linked List - initiating as an empty list """
         # This is the head node of the linked list
         self.head = None
-
-
 # endregion
 
 
@@ -119,7 +117,9 @@ def create_random_linked_list():
 def snake_or_snail(linked_list):
     """
     This Function is finding the starting of a loop according to Floyd's algorithm
-    TODO: explain the algorithm - including math part
+    looping over the list with two pointers - one fast, goes x2 nodes and one slow only x1 nodes.
+    If they meet there is a loop. They have to meet after maximum of 2 loop rounds.
+    so this is O(n)
     :param linked_list: The linked list
     :return: The starting of a loop if a loop exists, if not - returns None
     """
@@ -129,6 +129,7 @@ def snake_or_snail(linked_list):
     first_iteration = True
     while slow and slow.next and fast and fast.next and fast.next.next:
         if slow == fast and not first_iteration:
+            # found a loop
             break
         slow = slow.next
         fast = fast.next.next
@@ -138,12 +139,28 @@ def snake_or_snail(linked_list):
         # There is no loop - it is a snake
         return None
 
-    # TODO: explain the reason this works
-    slow = linked_list.head
-    while slow != fast:
-        slow = slow.next
-        fast = fast.next
-    return slow
+    """
+    Getting the start of the loop, The logic:
+    a = The number of nodes from head to start of loop
+    b = The number of nodes from start of loop to meeting point
+    c = The number of nodes in the loop
+    d = Number of full loop rounds slow did
+    e = Number of full loop rounds fast did
+    The slow speed was 1
+    The fast speed was 2 
+    so: a + b + c*d = 2*(a + b + c*e) => a + b = c*(d - 2*e )
+    we got that a+b is multiple of c
+    So if we take two pointer - one from head one from meeting point and have them continue a steps in same speed,
+    after a steps:
+        - the pointer from head will reach the start of a loop
+        - since a+b is a multiple of c - the pointer from the meeting point will also be at the start of the loop
+    """
+    from_start = linked_list.head
+    from_meeting = fast
+    while from_start != from_meeting:
+        from_start = from_start.next
+        from_meeting = from_meeting.next
+    return from_start
 
 
 def print_linked_list(linked_list):
