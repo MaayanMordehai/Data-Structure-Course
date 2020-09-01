@@ -11,8 +11,6 @@ class Node:
         self.next = None
 
 
-# Linked List defining and loop 
-# length finding class 
 class LinkedList:
     """ This class is a Linked list """
 
@@ -102,12 +100,19 @@ def create_random_linked_list():
             # checking if need to add more nodes
             add_new_node = random.choices(adding_choices, adding_probabilities)[0]
 
-        # if we have not found our starting loop node - setting it to the head node
-        if not loop_node:
-            loop_node = my_list.head
-
         # if curr_node in None the linked list is empty so there is noting to do
         if curr_node:
+            # while there is not a start loop node chosen, passing over nodes until one is chosen
+            node = my_list.head
+            while not loop_node:
+                is_loop_node = random.choices(loop_node_choices, loop_node_probabilities)[0]
+                if is_loop_node:
+                    loop_node = node
+                    break
+                node = node.next
+                if not node:
+                    node = my_list.head
+
             # setting the last node to point on the starting loop node
             curr_node.next = loop_node
 
@@ -192,7 +197,7 @@ def print_linked_list(linked_list):
         # node is not None - this is a snail and we need to print the loop
         # Printing the loop start and counting it
         # the \u21b1 is for the special arrow sign
-        print(u'\u21b1', node.val, end="")
+        print(u'\u21b1', " ", node.val, end="")
         node = node.next
         count += 1
         # counting first loop node
@@ -204,7 +209,7 @@ def print_linked_list(linked_list):
             print(" -> ", node.val, end="")
             node = node.next
         # got to end - The \u21b2 is for the special arrow sign
-        print(u'\u21b2')
+        print(" ", u'\u21b2')
 
     print("linked list count is : ", count)
     if loop_count:
@@ -212,5 +217,4 @@ def print_linked_list(linked_list):
 
 
 if __name__ == '__main__':
-    lst = create_random_linked_list()
-    print_linked_list(lst)
+    print_linked_list(create_random_linked_list())
