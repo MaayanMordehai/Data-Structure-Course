@@ -4,3 +4,5 @@
 /.user
 /.filters
 __pycache__/
+/.idea
+*/.idea
