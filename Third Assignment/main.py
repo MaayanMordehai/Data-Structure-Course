@@ -48,7 +48,7 @@ def build_tree():
     return tree
 
 
-def _nearest_right_point(tree, x, min_diff, nearest_point):
+def nearest_right_point(tree, x, min_diff=9999999, nearest_point=[0, 0]):
     """
     This Function is finding the nearest right point to x line.
     this is O(log(n))
@@ -61,42 +61,29 @@ def _nearest_right_point(tree, x, min_diff, nearest_point):
 
     # The end of the tree
     if not tree:
-        return
+        return nearest_point
 
     # if the current node x is closer to the x value (from the right)
     if 0 < tree.data[0] - x < min_diff:
         min_diff = tree.data[0] - x
-        nearest_point[0] = tree.data
+        nearest_point[0] = tree.data[0]
+        nearest_point[1] = tree.data[1]
 
     # if x is smaller then current node x going over left subtree else right
     if x < tree.data[0]:
-        _nearest_right_point(
+        return nearest_right_point(
             tree.left,
             x,
             min_diff,
             nearest_point
         )
     else:
-        _nearest_right_point(
+        return nearest_right_point(
             tree.right,
             x,
             min_diff,
             nearest_point
         )
-
-
-def nearest_right_point(tree, x):
-    """
-    This function is wrapping _nearest_right_point function
-    to be able to give nice answer and get less args
-    :param tree: The root node of the tree
-    :param x: The x line
-    :return: The nearest point from the right
-    """
-    # Initialize as the max difference and the 0,0 point
-    min_diff, nearest_point = 100, [[0, 0]]
-    _nearest_right_point(tree, x, min_diff, nearest_point)
-    return nearest_point[0]
 
 
 def main():
