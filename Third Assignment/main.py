@@ -43,7 +43,7 @@ def build_tree():
         # if a point is taken - continue randomize points
         while point in taken_points:
             point = [random.randint(0, 100), random.randint(0, 100)]
-        taken_points += [point]
+        taken_points.append(point)
         tree.insert(point)
     return tree
 
@@ -51,8 +51,7 @@ def build_tree():
 def _nearest_right_point(tree, x, min_diff, nearest_point):
     """
     This Function is finding the nearest right point to x line.
-
-    so this is O(log(n))
+    this is O(log(n))
     :param tree: The root node of the tree
     :param x: The x line
     :param min_diff: The minimal difference until now
