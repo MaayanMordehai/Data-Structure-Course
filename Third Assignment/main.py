@@ -51,7 +51,7 @@ def build_tree():
 def nearest_right_point(tree, x, min_diff=9999999, nearest_point=[0, 0]):
     """
     This Function is finding the nearest right point to x line.
-    this is O(log(n))
+    this is O(log(n)) in the average case
     :param tree: The root node of the tree
     :param x: The x line
     :param min_diff: The minimal difference until now
