@@ -39,10 +39,10 @@ def build_tree():
     tree = Node(None)
     taken_points = []
     for i in range(1000):
-        point = [random.randint(0, 100), random.randint(0, 100)]
+        point = [random.uniform(0, 100), random.uniform(0, 100)]
         # if a point is taken - continue randomize points
         while point in taken_points:
-            point = [random.randint(0, 100), random.randint(0, 100)]
+            point = [random.uniform(0, 100), random.uniform(0, 100)]
         taken_points.append(point)
         tree.insert(point)
     return tree
@@ -88,11 +88,11 @@ def nearest_right_point(tree, x, min_diff=9999999, nearest_point=[0, 0]):
 
 def main():
     line = -1
-    while not isinstance(line, int) or line < 0 or line > 100:
+    while not isinstance(line, float) or line < 0 or line > 100:
         try:
-            line = int(input("insert line x - needs to be int between 0-100\n"))
+            line = float(input("insert line x - needs to be int between 0-100\n"))
         except Exception:
-            print("line must be a natural number ...")
+            print("line must be a real number ...")
     print("testing on random tree with 1000 nodes")
     print(f"nearest right point is {nearest_right_point(build_tree(), line)}")
 
