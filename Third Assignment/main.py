@@ -1,9 +1,10 @@
 
+
 import random
 
 
 class Node:
-    """ This class is a node in Binary Tree """
+    """ This class is a node in Binary Search Tree """
 
     def __init__(self, data):
         """ Constructor of a node - setting the value """
@@ -48,42 +49,39 @@ def build_tree():
     return tree
 
 
-def nearest_right_point(tree, x, min_diff=9999999, nearest_point=[0, 0]):
+def nearest_right_point(tree, x, nearest_point=None):
     """
     This Function is finding the nearest right point to x line.
     this is O(log(n)) in the average case
     :param tree: The root node of the tree
     :param x: The x line
-    :param min_diff: The minimal difference until now
     :param nearest_point: The point of the minimal difference
-    :return: None (getting from param nearest_point the point)
+    :return: The nearest point
     """
 
     # The end of the tree
     if not tree:
+        if not nearest_point:
+            # There are no points from the right
+            return [0, 0]
         return nearest_point
 
-    # if the current node x is closer to the x value (from the right)
-    if 0 < tree.data[0] - x < min_diff:
-        min_diff = tree.data[0] - x
-        nearest_point[0] = tree.data[0]
-        nearest_point[1] = tree.data[1]
+    # if the current node is closer to the x value (from the right)
+    if 0 < tree.data[0] - x and (nearest_point is None or tree.data[0] - x < nearest_point[0] - x):
+        nearest_point = tree.data
 
     # if x is smaller then current node x going over left subtree else right
     if x < tree.data[0]:
         return nearest_right_point(
             tree.left,
             x,
-            min_diff,
             nearest_point
         )
-    else:
-        return nearest_right_point(
-            tree.right,
-            x,
-            min_diff,
-            nearest_point
-        )
+    return nearest_right_point(
+        tree.right,
+        x,
+        nearest_point
+    )
 
 
 def main():
