@@ -90,7 +90,7 @@ def main():
     line = -1
     while not isinstance(line, float) or line < 0 or line > 100:
         try:
-            line = float(input("insert line x - needs to be int between 0-100\n"))
+            line = float(input("insert line x - needs to be between 0-100\n"))
         except Exception:
             print("line must be a real number ...")
     print("testing on random tree with 1000 nodes")
