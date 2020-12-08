@@ -1,1 +1,1 @@
-# data-types-course
+# data-structure-course
